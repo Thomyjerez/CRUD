@@ -7,7 +7,7 @@ let listaPeliculas = JSON.parse(localStorage.getItem('listaPeliculasKey')) || []
 // agregar id al modal modalPelicula
 const modalFormPelicula = new bootstrap.Modal(document.querySelector('#modalPelicula'))
 // ya esta instanciada la ventana modal
-// para el boton de administrados
+// para el boton de administrador
 const btnCrearPelicula = document.querySelector('#btnCrearPelicula')
 let codigo = document.querySelector('#codigo')
 let titulo = document.querySelector('#titulo')
@@ -18,17 +18,17 @@ let formulario = document.querySelector('#formPelicula')
 // agregar los id en el index
 // agregar los eventos
 btnCrearPelicula.addEventListener('click', mostrarFormulario);
-formulario.addEventListener('submit', crerPelicula)
+formulario.addEventListener('submit', crearPelicula)
 
 function mostrarFormulario(){
     modalFormPelicula.show();
     codigo.value = uuidv4();
 }
 
-function crerPelicula(e){
+function crearPelicula(e){
     e.preventDefault();
     // agregar las validaciones necesarias
-    // crer una pelicula
+    // crear una pelicula
     const nuevaPelicula = new Pelicula(codigo.value, titulo.value,descripcion.value,imagen.value,genero.value);
 
     // guardar la pelicula en el arreglo
