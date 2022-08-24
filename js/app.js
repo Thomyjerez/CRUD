@@ -1,5 +1,5 @@
 // si me da error sacar las llaves
-import Pelicula from "./classPelicula";
+import Pelicula from "./classPelicula.js";
 
 // declarar variables
 let listaPeliculas = JSON.parse(localStorage.getItem('listaPeliculasKey')) || [];
@@ -22,7 +22,7 @@ codigo.addEventListener('blur', ()=> {validarCodigo(codigo)});
 titulo.addEventListener('blur',()=>{validarTitulo(titulo)})
 descripcion.addEventListener('blur', ()=>{validarDescripcion(descripcion)})
 btnCrearPelicula.addEventListener('click', mostrarFormulario);
-formulario.addEventListener('submit', crearPelicula)
+formulario.addEventListener('submit', crearPelicula);
 
 function mostrarFormulario(){
     modalFormPelicula.show();
@@ -30,33 +30,38 @@ function mostrarFormulario(){
 }
 
 function crearPelicula(e){
-    e.preventDefault();
-    // agregar las validaciones necesarias
-    function validarCodigo(input){
-        let expReg = /^[0-9]{9}$/
-        if(expReg.test(input.value)){
-            input.className = 'form-control is-valid'
-        }else{
-            input.className = 'form-control is-invalid'
+    if (mostrarFormulario(formulario)&&validarCodigo(codigo) && validarTitulo(titulo)&& validarDescripcion(descripcion)){
+        e.preventDefault();
+        // agregar las validaciones necesarias
+        function validarCodigo(input){
+            let expReg = /^[0-9]{9}$/
+            if(expReg.test(input.value)){
+                input.className = 'form-control is-valid'
+            }else{
+                input.className = 'form-control is-invalid'
+            }
         }
+        
+        
+         function validarTitulo(input){
+            if(input.value.trim().length >=3 && input.value.trim().length <=30){
+                input.className = 'form-control is-valid'
+            }else{
+                input.className = 'form-control is-invalid'
+            }
+        }
+        
+         function validarDescripcion(input){
+            if(input.value.trim().length <= 300){
+                input.className = 'form-control is-valid'
+            }else{
+                input.className = 'form-control is-invalid'
+            }
+         }
+    }else{
+        alert('Ingrese el dato nuevamente')
     }
     
-    
-     function validarTitulo(input){
-        if(input.value.trim().length >=3 && input.value.trim().length <=30){
-            input.className = 'form-control is-valid'
-        }else{
-            input.className = 'form-control is-invalid'
-        }
-    }
-    
-     function validarDescripcion(input){
-        if(input.value.trim().length <= 300){
-            input.className = 'form-control is-valid'
-        }else{
-            input.className = 'form-control is-invalid'
-        }
-     }
     // crear una pelicula
     const nuevaPelicula = new Pelicula(codigo.value, titulo.value,descripcion.value,imagen.value,genero.value);
 
@@ -74,6 +79,8 @@ function crearPelicula(e){
 
 function limpiarFormulario(){
     formulario.reset()
+    console.log(document.getElementsByTagName('input'))
+    
     // resetear la clase de bootstrap form-control
 }
 

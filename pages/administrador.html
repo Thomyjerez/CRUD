@@ -212,37 +212,46 @@
           </article>
         </section>
       </main>
-      <div class="modal fade" id="modalPelicula" aria-hidden="true">
-        <div class="modal-dialog">
+      <div
+      class="modal fade"
+      id="modalPelicula"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Administrar Serie</h5>
+            <h5 class="modal-title" id="exampleModalLabel">
+              Administrar Serie
+            </h5>
             <button
-              class="btn-close"
               type="button"
+              class="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
             ></button>
           </div>
           <div class="modal-body">
-            <form id="formPelicula">
+            <form id="formSerie">
               <div class="mb-3">
                 <label for="codigo">Codigo</label>
                 <input
                   id="codigo"
+                  type="text"
                   class="form-control"
                   placeholder="123"
                   maxlength="5"
                   minlength="1"
-                  type="text"
                 />
               </div>
               <div class="mb-3">
                 <label for="titulo">Titulo</label>
                 <input
-                  type="text"
                   id="titulo"
+                  type="text"
                   class="form-control"
-                  placeholder="Ej:Iron man"
+                  placeholder="Ej: Iron Man"
                   maxlength="60"
                   minlength="2"
                 />
@@ -284,6 +293,7 @@
           </div>
         </div>
       </div>
+    </div>
       <footer class="bg-dark text-light py-4 text-center">
         <p>&copy; Todos los derechos reservados</p>
       </footer>
@@ -292,6 +302,7 @@
       integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/uuid@latest/dist/umd/uuidv4.min.js"></script>
     <script src="../js/app.js" type="module"></script>
     </body>
   </head>

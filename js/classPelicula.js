@@ -1,4 +1,4 @@
-export class Pelicula{
+export default class Pelicula{
     constructor(codigo, titulo, descripcion,imagen,genero){
         this.codigo = codigo;
         this.titulo = titulo;
