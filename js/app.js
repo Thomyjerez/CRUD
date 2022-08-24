@@ -1,5 +1,6 @@
 // si me da error sacar las llaves
 import Pelicula from "./classPelicula";
+
 // declarar variables
 let listaPeliculas = JSON.parse(localStorage.getItem('listaPeliculasKey')) || [];
 
@@ -15,8 +16,11 @@ let descripcion = document.querySelector('#descripcion')
 let imagen = document.querySelector('#imagen')
 let genero = document.querySelector('#genero')
 let formulario = document.querySelector('#formPelicula') 
-// agregar los id en el index
+
 // agregar los eventos
+codigo.addEventListener('blur', ()=> {validarCodigo(codigo)});
+titulo.addEventListener('blur',()=>{validarTitulo(titulo)})
+descripcion.addEventListener('blur', ()=>{validarDescripcion(descripcion)})
 btnCrearPelicula.addEventListener('click', mostrarFormulario);
 formulario.addEventListener('submit', crearPelicula)
 
@@ -28,6 +32,31 @@ function mostrarFormulario(){
 function crearPelicula(e){
     e.preventDefault();
     // agregar las validaciones necesarias
+    function validarCodigo(input){
+        let expReg = /^[0-9]{9}$/
+        if(expReg.test(input.value)){
+            input.className = 'form-control is-valid'
+        }else{
+            input.className = 'form-control is-invalid'
+        }
+    }
+    
+    
+     function validarTitulo(input){
+        if(input.value.trim().length >=3 && input.value.trim().length <=30){
+            input.className = 'form-control is-valid'
+        }else{
+            input.className = 'form-control is-invalid'
+        }
+    }
+    
+     function validarDescripcion(input){
+        if(input.value.trim().length <= 300){
+            input.className = 'form-control is-valid'
+        }else{
+            input.className = 'form-control is-invalid'
+        }
+     }
     // crear una pelicula
     const nuevaPelicula = new Pelicula(codigo.value, titulo.value,descripcion.value,imagen.value,genero.value);
 
