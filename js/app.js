@@ -48,6 +48,9 @@ function crearPelicula(e){
     
 function limpiarFormulario(){
     formulario.reset();
+    titulo.className = 'form-control'
+    descripcion.className = 'form-control'
+    imagen.className = 'form-control'
 }  
     
    
