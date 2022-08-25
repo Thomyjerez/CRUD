@@ -1,6 +1,6 @@
 // si me da error sacar las llaves
 import Pelicula from "./classPelicula.js";
-
+import {validarCodigo, validarTitulo, validarDescripcion} from './classPelicula.js'
 // declarar variables
 let listaPeliculas = JSON.parse(localStorage.getItem('listaPeliculasKey')) || [];
 
@@ -30,60 +30,27 @@ function mostrarFormulario(){
 }
 
 function crearPelicula(e){
-    if (mostrarFormulario(formulario)&&validarCodigo(codigo) && validarTitulo(titulo)&& validarDescripcion(descripcion)){
-        e.preventDefault();
-        // agregar las validaciones necesarias
-        function validarCodigo(input){
-            let expReg = /^[0-9]{9}$/
-            if(expReg.test(input.value)){
-                input.className = 'form-control is-valid'
-            }else{
-                input.className = 'form-control is-invalid'
-            }
-        }
-        
-        
-         function validarTitulo(input){
-            if(input.value.trim().length >=3 && input.value.trim().length <=30){
-                input.className = 'form-control is-valid'
-            }else{
-                input.className = 'form-control is-invalid'
-            }
-        }
-        
-         function validarDescripcion(input){
-            if(input.value.trim().length <= 300){
-                input.className = 'form-control is-valid'
-            }else{
-                input.className = 'form-control is-invalid'
-            }
-         }
-    }else{
-        alert('Ingrese el dato nuevamente')
-    }
+    e.preventDefault();
+    // agregar las validaciones necesarias
     
-    // crear una pelicula
-    const nuevaPelicula = new Pelicula(codigo.value, titulo.value,descripcion.value,imagen.value,genero.value);
 
-    // guardar la pelicula en el arreglo
+    //  crear una pelicula
+    const nuevaPelicula = new Pelicula(codigo.value, titulo.value, descripcion.value, imagen.value, genero.value)
+    //  guardar pelicula en el arreglo
     listaPeliculas.push(nuevaPelicula)
-    console.log(listaPeliculas)
-    // guardar los datos en localstorage
-
-    // limpiar el form 
-
+    // guardar los datos en localstorage    
+    guardarDatosEnLS()
+    // limpiar el formulario
     limpiarFormulario();
     // cerrar la ventana modal
-    modalFormPelicula.hide();
-}
-
-function limpiarFormulario(){
-    formulario.reset()
-    console.log(document.getElementsByTagName('input'))
+    modalFormPelicula.hide()  
+    }
     
-    // resetear la clase de bootstrap form-control
-}
-
+function limpiarFormulario(){
+    formulario.reset();
+}  
+    
+   
 // stringify transforma a formato json
 function guardarDatosEnLS(){
     localStorage.setItem('listaPeliculasKey', JSON.stringify(listaPeliculas))
@@ -92,4 +59,4 @@ function guardarDatosEnLS(){
 
 
 
-
+ 
